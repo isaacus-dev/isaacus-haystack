@@ -7,24 +7,43 @@ name = "isaacus-haystack"
 version = "0.1.0"
 description = "Isaacus embedders for Haystack 2.x"
 readme = "README.md"
-license = { text = "Apache-2.0" }  # or MIT if you prefer
+license = { text = "Apache-2.0" }
 requires-python = ">=3.9"
 authors = [{ name = "Isaacus" }]
 dependencies = [
   "haystack-ai>=2.14.0",
-  "requests>=2.31.0",
+  "requests>=2.31.0"
 ]
 
 [project.urls]
 Homepage = "https://github.com/isaacus-dev/isaacus-haystack"
-Source   = "https://github.com/isaacus-dev/isaacus-haystack"
-Issues   = "https://github.com/isaacus-dev/isaacus-haystack/issues"
+Source = "https://github.com/isaacus-dev/isaacus-haystack"
+Issues = "https://github.com/isaacus-dev/isaacus-haystack/issues"
 Documentation = "https://docs.isaacus.com/capabilities/embedding"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/haystack_integrations"]
 
+[tool.hatch.build.targets.wheel.force-include]
+"src/haystack_integrations/py.typed" = "haystack_integrations/py.typed"
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "/tests",
+  "/.github",
+  "/**/__pycache__",
+  "/.pytest_cache",
+  "/.mypy_cache",
+  "/build",
+  "/dist"
+]
+
 [tool.hatch.envs.test]
-dependencies = ["pytest", "haystack-ai>=2.14.0", "requests>=2.31.0"]
+dependencies = [
+  "pytest",
+  "haystack-ai>=2.14.0",
+  "requests>=2.31.0"
+]
+
 [tool.hatch.envs.test.scripts]
 all = "pytest -q"
