@@ -1,6 +1,4 @@
 [![PyPI - Version](https://img.shields.io/pypi/v/isaacus-haystack.svg)](https://pypi.org/project/isaacus-haystack)
-[![Python](https://img.shields.io/pypi/pyversions/isaacus-haystack.svg)](https://pypi.org/project/isaacus-haystack)
-
 ## Overview
 [Isaacus](https://isaacus.com/) is a foundational legal AI research company building AI models, apps, and tools for the legal tech ecosystem.
 
