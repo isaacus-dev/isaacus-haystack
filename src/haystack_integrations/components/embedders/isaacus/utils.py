@@ -2,7 +2,6 @@ from __future__ import annotations
 from typing import Any, Dict, List, Optional
 import requests
 
-
 class IsaacusClient:
     def __init__(self, api_key: str, base_url: str = "https://api.isaacus.com/v1", timeout: int = 30):
         self.api_key = api_key
@@ -35,5 +34,4 @@ class IsaacusClient:
         resp = requests.post(url, json=payload, headers=headers, timeout=self.timeout)
         resp.raise_for_status()
         data = resp.json()
-        items = data.get("embeddings", [])
-        return [it["embedding"] for it in items]
+        return [item["embedding"] for item in data.get("embeddings", [])]

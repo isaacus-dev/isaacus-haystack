@@ -3,10 +3,8 @@ from unittest.mock import patch
 from haystack.dataclasses import Document
 from haystack.utils import Secret
 from haystack_integrations.components.embedders.isaacus import (
-    IsaacusTextEmbedder,
-    IsaacusDocumentEmbedder,
+    IsaacusTextEmbedder, IsaacusDocumentEmbedder
 )
-
 
 def _fake_post(*_args, **kwargs):
     class _Resp:
@@ -16,14 +14,12 @@ def _fake_post(*_args, **kwargs):
             return {"embeddings": [{"embedding": [float(len(t))] * 4} for t in texts]}
     return _Resp()
 
-
 def test_text_embedder_runs_and_returns_vector():
     with patch("requests.post", _fake_post):
         emb = IsaacusTextEmbedder(api_key=Secret.from_token("x"), model="kanon-2-embedder")
         out = emb.run("hello")
         assert "embedding" in out and isinstance(out["embedding"], list)
         assert len(out["embedding"]) == 4
-
 
 def test_document_embedder_sets_embeddings_on_documents():
     with patch("requests.post", _fake_post):
@@ -33,5 +29,4 @@ def test_document_embedder_sets_embeddings_on_documents():
         docs2 = out["documents"]
         assert isinstance(docs2[0].embedding, list) and len(docs2[0].embedding) == 4
         assert isinstance(docs2[1].embedding, list) and len(docs2[1].embedding) == 4
-        # empty doc keeps embedding as None/falsy
-        assert not docs2[2].embedding
+        assert not docs2[2].embedding  # empty doc remains without embedding

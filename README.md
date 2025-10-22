@@ -1,25 +1,3 @@
----
-layout: integration
-name: Isaacus
-description: Use the latest foundational legal AI models from Isaacus in Haystack.
-authors:
-  - name: Isaacus
-    socials:
-      github: isaacus-dev
-      linkedin: https://www.linkedin.com/company/isaacus/
-repo: https://github.com/deepset-ai/haystack-core-integrations/tree/main/integrations/isaacus
-type: Model Provider
-logo: /logos/isaacus.png
-version: Haystack 2.0
----
-### Table of Contents
-- [Overview](#overview)
-- [Installation](#installation)
-- [Components](#components)
-- [Quick Example](#quick-example)
-- [Docs](#docs)
-- [License](#license)
-
 ## Overview
 [Isaacus](https://isaacus.com/) is a foundational legal AI research company building AI models, apps, and tools for the legal tech ecosystem.
 
@@ -51,7 +29,8 @@ embedder = IsaacusDocumentEmbedder(
     # dimensions=1792,                 # optionally set to match your vector DB
 )
 
-raw_docs = [Document(content="Isaacus releases Kanon 2 Embedder: the world's best legal embedding model.")]
+raw_docs = [Document(content="Isaacus releases Kanon 2 Embedder: the world's best legal embedding model."),
+            Document(content="Isaacus also offers legal zero-shot classification and extractive question answering models.")]
 store.write_documents(embedder.run(raw_docs)["documents"])
 
 pipe = Pipeline()

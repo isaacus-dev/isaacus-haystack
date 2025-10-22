@@ -5,15 +5,9 @@ from haystack.dataclasses import Document
 from haystack.utils import Secret
 from .utils import IsaacusClient
 
-
 @component
 class IsaacusDocumentEmbedder:
-    """
-    Embeds a list of Haystack `Document`s using Isaacus (configurable model).
-    Writes vectors to `document.embedding` and returns the list under `documents`.
-
-    Parameters mirror IsaacusTextEmbedder, with an additional `batch_size`.
-    """
+    """Embed a list of Documents using an Isaacus model (e.g., 'kanon-2-embedder')."""
 
     def __init__(
         self,
